@@ -1,0 +1,22 @@
+{
+  "name": "@omni/root",
+  "private": true,
+  "scripts": {
+    "start": "lerna run --scope @omni/* --parallel start",
+    "start:todo": "lerna run --scope @omni/todo start",
+    "build": "lerna run --scope @omni/* build",
+    "serve": "lerna run --scope @omni/* --parallel serve",
+    "clean": "lerna run --scope @omni/* --parallel clean",
+    "lint": "lerna run --scope @omni/root-app lint",
+    "bootstrap": "lerna bootstrap --ignore-scripts",
+    "add:root-app": "lerna --scope @omni/root-app add",
+    "add:experience": "lerna --scope @omni/experience add",
+    "lerna-dockerize": "lerna-dockerize --template-dockerfile-name Dockerfile.template"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

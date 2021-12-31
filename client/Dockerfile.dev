@@ -1,0 +1,10 @@
+FROM node:14.17.0
+WORKDIR '/app'
+COPY package.json yarn.lock ./
+COPY packages/RootApp/package.json /app/packages/RootApp/package.json
+COPY packages/Experience/package.json /app/packages/Experience/package.json
+COPY lerna.json /app/lerna.json
+RUN yarn
+COPY . .
+EXPOSE 3001
+CMD ["yarn","run","start"]

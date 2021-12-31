@@ -1,0 +1,16 @@
+{
+  "name": "micro-todo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx concurrently -n frontend,docker \"yarn start-client\" \"docker-compose -f docker-compose.dev.yml up -d\"",
+    "start-client": "yarn --cwd ./client start",
+    "build": "docker-compose -f docker-compose.dev.yml  build ",
+    "stop": "docker-compose -f docker-compose.dev.yml down && docker-compose -f docker-compose.dev.yml rm -f"
+  },
+  "devDependencies": {
+    "concurrently": "^6.5.1",
+    "shelljs": "^0.8.4"
+  }
+}
