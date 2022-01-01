@@ -17,6 +17,6 @@
     "esModuleInterop": true,
     "jsxImportSource": "@emotion/react" // Add the css prop
   },
-  "include": ["src", "types"],
+  "include": ["src", "types", "assets"],
   "exclude": ["node_modules", "webpack.*"]
 }
