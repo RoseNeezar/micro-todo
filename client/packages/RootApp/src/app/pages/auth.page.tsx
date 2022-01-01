@@ -7,7 +7,7 @@ const AuthPage = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('clcick')
+    // console.log('clcick')
     auth.login(username)
   }
 
@@ -18,13 +18,17 @@ const AuthPage = () => {
       <form onSubmit={onSubmit} tw="flex gap-2">
         <input
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={e => {
+            return setUsername(e.target.value)
+          }}
           placeholder="Username"
           tw="border p-1 px-2 rounded"
         />
         <button
           type="button"
-          onClick={() => auth.logout()}
+          onClick={() => {
+            return auth.logout()
+          }}
           tw="text-sm bg-blue-500 text-white border inline-block py-1 px-2 rounded"
         >
           Login

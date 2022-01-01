@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getImageById } from '../data/image'
 
 const Modal = () => {
-  let navigate = useNavigate()
-  let { id } = useParams<'id'>()
-  let image = getImageById(Number(id))
-  let buttonRef = React.useRef<HTMLButtonElement>(null)
+  const navigate = useNavigate()
+  const { id } = useParams<'id'>()
+  const image = getImageById(Number(id))
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   function onDismiss() {
     navigate(-1)

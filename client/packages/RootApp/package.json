@@ -12,7 +12,8 @@
     "build": "yarn run clean && webpack --config webpack.prod.js --mode production",
     "serve": "serve dist -p 3001",
     "clean": "rm -rf dist",
-    "lint": "eslint ./src --ext .tsx"
+    "lint": "eslint ./src --fix --ext .tsx",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
@@ -62,7 +63,9 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.0",
     "lerna-dockerize": "^0.8.2",
+    "lint-staged": "^12.1.4",
     "mini-css-extract-plugin": "^2.4.2",
     "prettier": "^2.5.1",
     "react-refresh": "^0.11.0",

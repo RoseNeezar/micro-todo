@@ -18,7 +18,7 @@ const AuthProvider = (props: { children: React.ReactNode }) => {
   })
 
   const login = (username: string) => {
-    console.log(username)
+    // console.log(username)
     setState({ status: 'loggedIn', username })
   }
 
@@ -26,14 +26,13 @@ const AuthProvider = (props: { children: React.ReactNode }) => {
     setState({ status: 'loggedOut' })
   }
 
-  const contextValue = React.useMemo(
-    () => ({
+  const contextValue = React.useMemo(() => {
+    return {
       ...state,
       login,
       logout
-    }),
-    [state]
-  )
+    }
+  }, [state])
 
   return (
     <AuthContext.Provider value={contextValue}>
@@ -42,6 +41,8 @@ const AuthProvider = (props: { children: React.ReactNode }) => {
   )
 }
 
-export const useAuth = () => React.useContext(AuthContext)
+export const useAuth = () => {
+  return React.useContext(AuthContext)
+}
 
 export default AuthProvider

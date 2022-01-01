@@ -9,11 +9,11 @@ const customStyles = {
   }
 }
 
-const GlobalStyles = () => (
+const GlobalStyles = () => {return (
   <div>
     <BaseStyles />
     <Global styles={customStyles} />
   </div>
-)
+)}
 
 export default GlobalStyles

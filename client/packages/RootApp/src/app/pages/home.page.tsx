@@ -6,7 +6,8 @@ import { useAuth } from '../store/AuthProvider'
 
 const Home: React.FC<{ item: string }> = () => {
   const auth = useAuth()
-  let location = useLocation()
+  const location = useLocation()
+  console.log('del')
   return (
     <div style={{ padding: '0 24px' }}>
       <h2 tw="bg-purple-200 font-bold text-green-500">
@@ -20,29 +21,31 @@ const Home: React.FC<{ item: string }> = () => {
           gap: '24px'
         }}
       >
-        {IMAGES.map(image => (
-          <Link
-            key={image.id}
-            to={`/img/${image.id}`}
-            // This is the trick! Set the `backgroundLocation` in location state
-            // so that when we open the modal we still see the current page in
-            // the background.
-            state={{ backgroundLocation: location }}
-          >
-            <img
-              width={200}
-              height={200}
-              style={{
-                width: '100%',
-                aspectRatio: '1 / 1',
-                height: 'auto',
-                borderRadius: '8px'
-              }}
-              src={image.src}
-              alt={image.title}
-            />
-          </Link>
-        ))}
+        {IMAGES.map(image => {
+          return (
+            <Link
+              key={image.id}
+              to={`/img/${image.id}`}
+              // This is the trick! Set the `backgroundLocation` in location state
+              // so that when we open the modal we still see the current page in
+              // the background.
+              state={{ backgroundLocation: location }}
+            >
+              <img
+                width={200}
+                height={200}
+                style={{
+                  width: '100%',
+                  aspectRatio: '1 / 1',
+                  height: 'auto',
+                  borderRadius: '8px'
+                }}
+                src={image.src}
+                alt={image.title}
+              />
+            </Link>
+          )
+        })}
       </div>
     </div>
   )

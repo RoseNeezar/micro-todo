@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom'
 import { getImageById } from '../data/image'
 
 const ImageView = () => {
-  let { id } = useParams<'id'>()
-  let image = getImageById(Number(id))
+  const { id } = useParams<'id'>()
+  const image = getImageById(Number(id))
 
   if (!image) return <div>Image not found</div>
 

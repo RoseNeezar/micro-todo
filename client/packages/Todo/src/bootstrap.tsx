@@ -6,7 +6,7 @@ import { GlobalStyles } from "twin.macro";
 import App from "./App";
 
 const useMount = (el: ReactDOM.Container, parentNavigation: any) => {
-  console.log(el, !!parentNavigation);
+  //console.log(el, !!parentNavigation);
   ReactDOM.render(
     <React.StrictMode>
       <GlobalStyles />
