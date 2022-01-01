@@ -42,7 +42,7 @@
       }
     ],
     "import/no-unresolved": [1, { "caseSensitive": false }],
-    "react/destructuring-assignment": [2, "never"],
+    "react/destructuring-assignment": 0,
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -58,7 +58,9 @@
     "react/button-has-type": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
     "react/jsx-no-bind": 0,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-no-useless-fragment": 0,
+    "@typescript-eslint/ban-ts-comment": 0
   },
   "settings": {
     "import/resolver": {
