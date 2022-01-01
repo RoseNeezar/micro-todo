@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { IMAGES } from '../../data/image'
 
-const Home: React.FC<{ item: string }> = () => {
+const Home: React.FC = () => {
   const location = useLocation()
 
   return (

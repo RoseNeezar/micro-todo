@@ -1,29 +1,30 @@
-import React from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import ImageView from './app/component/ImageView'
-import AuthPage from './app/pages/Auth/Auth.page'
+import React, { useEffect } from 'react'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import AuthRoute from './app/pages/Auth/AuthRoute'
 import Home from './app/pages/Home/Home.page'
-import { useAuthStore } from './app/store/useAuth.store'
+import Landing from './app/pages/Landing/Landing.page'
 
 // const Experience = React.lazy(() => import('./app/remote/experience.page'))
 
 const App: React.FC = () => {
-  const { isLoggedIn, login } = useAuthStore()
   const location = useLocation()
-
-  // The `backgroundLocation` state is the location that we were at when one of
-  // the gallery links was clicked. If it's there, use it as the location for
-  // the <Routes> so we show the gallery in the background, behind the modal.
-  // const state = location.state as { backgroundLocation?: Location }
-
+  useEffect(() => {
+    const el = document.querySelector('.overlay')
+    // @ts-ignore
+    el.style.display = 'none'
+  }, [])
   return (
     <Routes>
+      <Route path="/landing" element={<Landing />} />
       <Route
-        path="/"
-        element={isLoggedIn() ? <Home item="hello" /> : <AuthPage />}
+        path="/home"
+        element={
+          <AuthRoute>
+            <Home />
+          </AuthRoute>
+        }
       />
-      <Route path="/21" element={<h1>True</h1>} />
-      <Route path="/img/:id" element={<ImageView />} />
+      <Route path="/" element={<Navigate replace to="/landing" />} />
     </Routes>
   )
 }
