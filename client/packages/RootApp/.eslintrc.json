@@ -33,7 +33,7 @@
         "js": "never"
       }
     ],
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": 0,
     "react/function-component-definition": [
       2,
       {
@@ -51,7 +51,7 @@
         "peerDependencies": false
       }
     ],
-    "arrow-body-style": ["error", "always"],
+    "arrow-body-style": 0,
     "unused-imports/no-unused-imports": 0,
     "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/no-explicit-any": 0,
@@ -60,7 +60,8 @@
     "react/jsx-no-bind": 0,
     "react/react-in-jsx-scope": 0,
     "react/jsx-no-useless-fragment": 0,
-    "@typescript-eslint/ban-ts-comment": 0
+    "@typescript-eslint/ban-ts-comment": 0,
+    "react/require-default-props": 0
   },
   "settings": {
     "import/resolver": {

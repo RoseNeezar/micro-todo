@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Devices from '../../../assets/devices.svg'
 import { useAuthStore } from '../../store/useAuth.store'
 
@@ -77,21 +77,22 @@ const Landing = () => {
             tw="flex w-full justify-center md:justify-start pb-24 lg:pb-0 "
             className="fade-in"
           >
-            <button
+            <Link
               tw="h-12 mr-4 bg-purple-800 text-white text-center rounded-2xl p-3 w-32"
               className="bounce-top-icons"
-              onClick={() => {
-                return handleSubmit()
-              }}
+              to="/login"
+              state={{ backgroundLocation: location }}
             >
               Login
-            </button>
-            <button
+            </Link>
+            <Link
               tw="h-12  bg-purple-800 text-white text-center rounded-2xl p-3 w-32"
               className="bounce-top-icons"
+              to="/register"
+              state={{ backgroundLocation: location }}
             >
               Register
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -116,6 +117,7 @@ const Landing = () => {
           </a>
         </div>
       </div>
+      <Outlet />
     </div>
   )
 }
