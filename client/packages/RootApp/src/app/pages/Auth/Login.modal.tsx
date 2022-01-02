@@ -1,13 +1,12 @@
 // @ts-nocheck
 import { Transition, Dialog } from '@headlessui/react'
-import React, { Fragment, useState } from 'react'
-import { FC } from 'react'
+import React, { Fragment, useState , FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import InputGroup from '../../component/Input'
 import { errorHelper } from '../../utils/errorHelper'
 
 const Login: FC<{ isOpen: boolean }> = ({ isOpen }) => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [errors, setErrors] = useState<any>({})
 
@@ -62,7 +61,7 @@ const Login: FC<{ isOpen: boolean }> = ({ isOpen }) => {
                     placeholder="Email"
                     error={errorHelper(errors.message, 'Email')}
                   />
-                  <div tw="h-3"></div>
+                  <div tw="h-3" />
                   <InputGroup
                     className="mb-2"
                     type="password"

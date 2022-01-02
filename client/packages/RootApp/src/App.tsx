@@ -10,7 +10,7 @@ import Landing from './app/pages/Landing/Landing.page'
 
 const App: React.FC = () => {
   const location = useLocation()
-  let state = location.state as { backgroundLocation?: Location }
+  const state = location.state as { backgroundLocation?: Location }
 
   useEffect(() => {
     const el = document.querySelector('.overlay')

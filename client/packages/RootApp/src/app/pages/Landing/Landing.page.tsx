@@ -80,7 +80,7 @@ const Landing = () => {
             <Link
               tw="h-12 mr-4 bg-purple-800 text-white text-center rounded-2xl p-3 w-32"
               className="bounce-top-icons"
-              to={'/login'}
+              to="/login"
               state={{ backgroundLocation: location }}
             >
               Login
@@ -88,7 +88,7 @@ const Landing = () => {
             <Link
               tw="h-12  bg-purple-800 text-white text-center rounded-2xl p-3 w-32"
               className="bounce-top-icons"
-              to={'/register'}
+              to="/register"
               state={{ backgroundLocation: location }}
             >
               Register
