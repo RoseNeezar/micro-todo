@@ -4,4 +4,4 @@
 # cd ./client
 
 # yarn lint
-yarn lint-staged
+# yarn lint-staged
