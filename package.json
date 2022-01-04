@@ -15,7 +15,15 @@
   "devDependencies": {
     "concurrently": "^6.5.1",
     "husky": "^7.0.0",
+    "lint-staged": "^12.1.5",
+    "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
     "shelljs": "^0.8.4"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "yarn  --cwd ./client  eslint",
+      "yarn  --cwd ./client  prettier --write"
+    ]
   }
 }

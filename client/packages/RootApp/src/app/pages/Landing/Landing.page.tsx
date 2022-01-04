@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import Devices from '../../../assets/devices.svg'
 
 const Landing = () => {
+  console.log('somer')
   const location = useLocation()
   return (
     <div tw=" bg-right bg-cover bg-gray-100 xl:h-screen">
