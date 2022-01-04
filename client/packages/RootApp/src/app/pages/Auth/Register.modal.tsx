@@ -1,26 +1,39 @@
 // @ts-nocheck
 import { Transition, Dialog } from '@headlessui/react'
-import React, { Fragment, useState , FC } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { Fragment, useState, FC } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import InputGroup from '../../component/Input'
+import { useAuthStore } from '../../store/useAuth.store'
 import { errorHelper } from '../../utils/errorHelper'
 
 const Register: FC<{ isOpen: boolean }> = ({ isOpen }) => {
   const navigate = useNavigate()
+  const { register } = useAuthStore()
+  const location = useLocation()
+
+  // @ts-ignore
+  const from = location.state?.from?.pathname || '/'
 
   const [errors, setErrors] = useState<any>({})
 
   const [formState, setFormState] = useState({
-    email: '',
+    username: '',
     password: ''
   })
-  const { email, password } = formState
+  const { username, password } = formState
 
   const onChangeText =
     (name: string) =>
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setFormState({ ...formState, [name]: e.target.value })
     }
+
+  const handleSubmit = async () => {
+    await register({
+      username,
+      password
+    })
+  }
 
   const onDismiss = () => {
     navigate(-1)
@@ -46,20 +59,18 @@ const Register: FC<{ isOpen: boolean }> = ({ isOpen }) => {
             <div tw="inline-block w-full max-w-sm my-16 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-2xl bg-gray-100">
               <div tw="flex flex-col w-full p-5 pt-3 m-auto rounded-md ">
                 <div tw="flex flex-col py-4">
-                  <Dialog.Title>
-                    <h1 tw="font-bold text-3xl text-indigo-800 text-center space-x-1">
-                      Register
-                    </h1>
+                  <Dialog.Title tw="font-bold text-3xl text-indigo-800 text-center space-x-1">
+                    Register
                   </Dialog.Title>
                 </div>
                 <div tw="flex flex-col">
                   <InputGroup
                     className="mb-2"
-                    type="email"
-                    value={email}
+                    type="username"
+                    value={username}
                     setValue={onChangeText}
-                    placeholder="Email"
-                    error={errorHelper(errors.message, 'Email')}
+                    placeholder="Username"
+                    error={errorHelper(errors.message, 'Username')}
                   />
                   <div tw="h-3" />
                   <InputGroup
@@ -70,7 +81,11 @@ const Register: FC<{ isOpen: boolean }> = ({ isOpen }) => {
                     placeholder="Password"
                     error={errorHelper(errors.message, 'Password')}
                   />
-                  <button tw=" w-full py-2 mt-2 mb-2 text-base rounded-xl font-bold text-white bg-indigo-800 border-indigo-800 focus:outline-none focus:border-indigo-800 hover:bg-indigo-400">
+                  <button
+                    type="button"
+                    tw=" w-full py-2 mt-2 mb-2 text-base rounded-xl font-bold text-white bg-indigo-800 border-indigo-800 focus:outline-none focus:border-indigo-800 hover:bg-indigo-400"
+                    onClick={() => handleSubmit()}
+                  >
                     Confirm
                   </button>
                 </div>

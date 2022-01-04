@@ -1,31 +1,18 @@
-import * as React from "react";
-import { Routes, Route } from "react-router";
-import { BrowserRouter } from "react-router-dom";
-import Chat from "./app/pages/chat.page";
-import Dashboard from "./app/pages/dashboard.page";
-import Home from "./app/pages/home.page";
-import { isDev } from "./util/isDev";
+import * as React from 'react'
+import { Navigate, Route, Routes } from 'react-router'
+import Todo from './app/pages/Todo.page'
 
-const App: React.FC<{ parentNavigation: any }> = ({ parentNavigation }) => (
-  <div
-    style={{
-      backgroundColor: "purple",
-      color: "white",
-      height: "100vh",
-      width: "100vw",
-    }}
-  >
-    <React.Suspense fallback={"Loading"}>
+const App: React.FC<{ authStore: any }> = ({ authStore }) => {
+  console.log(authStore)
+  return (
+    <React.Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
-        <Route
-          path="dashboard"
-          element={<Dashboard parentNavigation={parentNavigation} />}
-        />
-        <Route path="chat" element={<Chat />} />
-        <Route path="*" element={<Home />} />
+        <Route path="/todo" element={<Todo />} />
+        <Route path="*" element={<h1>Nothing</h1>} />
+        <Route path="/" element={<Navigate replace to="/todo" />} />
       </Routes>
     </React.Suspense>
-  </div>
-);
+  )
+}
 
-export default App;
+export default App

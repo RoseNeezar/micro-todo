@@ -6,7 +6,7 @@ import Register from './app/pages/Auth/Register.modal'
 import Home from './app/pages/Home/Home.page'
 import Landing from './app/pages/Landing/Landing.page'
 
-// const Experience = React.lazy(() => import('./app/remote/experience.page'))
+const TodoApp = React.lazy(() => import('./app/remote/TodoApp.remote'))
 
 const App: React.FC = () => {
   const location = useLocation()
@@ -18,7 +18,7 @@ const App: React.FC = () => {
     el.style.display = 'none'
   }, [])
   return (
-    <>
+    <React.Suspense fallback={<h1>Loading...</h1>}>
       <Routes location={state?.backgroundLocation || location}>
         <Route path="/landing" element={<Landing />} />
         <Route
@@ -29,7 +29,8 @@ const App: React.FC = () => {
             </AuthRoute>
           }
         />
-        <Route path="/" element={<Navigate replace to="/landing" />} />
+        <Route path="/todo" element={<TodoApp />} />
+        <Route path="/" element={<Navigate replace to="/home" />} />
       </Routes>
       {state?.backgroundLocation && (
         <Routes>
@@ -43,7 +44,7 @@ const App: React.FC = () => {
           />
         </Routes>
       )}
-    </>
+    </React.Suspense>
   )
 }
 

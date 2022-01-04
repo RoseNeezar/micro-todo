@@ -1,21 +1,10 @@
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Devices from '../../../assets/devices.svg'
-import { useAuthStore } from '../../store/useAuth.store'
 
 const Landing = () => {
-  const { login } = useAuthStore()
   const location = useLocation()
-  const navigate = useNavigate()
-
-  // @ts-ignore
-  const from = location.state?.from?.pathname || '/'
-
-  const handleSubmit = () => {
-    login()
-    navigate(from, { replace: true })
-  }
   return (
-    <div tw="h-screen pb-14 bg-right bg-cover bg-gray-100">
+    <div tw=" bg-right bg-cover bg-gray-100 xl:h-screen">
       <div tw="w-full container mx-auto p-6">
         <div tw="w-full flex items-center justify-between">
           <a
@@ -106,7 +95,7 @@ const Landing = () => {
         </div>
 
         <div
-          tw="w-full pt-16 pb-6 text-sm text-center md:text-left "
+          tw="w-full pt-16 pb-6 text-sm text-center md:text-left"
           className="fade-in"
         >
           <a
@@ -117,7 +106,6 @@ const Landing = () => {
           </a>
         </div>
       </div>
-      <Outlet />
     </div>
   )
 }

@@ -35,7 +35,7 @@ const devConfig = {
     new ModuleFederationPlugin({
       name: 'root-app',
       remotes: {
-        todo: 'todo@http://localhost:3002/remoteEntry.js'
+        todo: 'todo@http://localhost:3001/remoteEntry.js'
       },
       shared: {
         ...deps,
