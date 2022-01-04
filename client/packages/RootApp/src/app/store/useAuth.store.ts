@@ -8,7 +8,7 @@ import { combineAndImmer } from './types/combine-Immer'
 export const useAuthStore = create(
   combineAndImmer(
     {
-      token: undefined as string | undefined,
+      token: window.localStorage.getItem('token') ?? (null as string | null),
       appLoaded: false,
       isLoading: false
     },
@@ -18,8 +18,10 @@ export const useAuthStore = create(
         try {
           const result = await agent.Auth.login(data)
           set(s => {
-            s.token = result.token
+            s.token = result.accessToken
           })
+          console.log(result.accessToken)
+          window.localStorage.setItem('token', result.accessToken)
           useHistory.push('/todo')
         } catch (error) {}
       },
@@ -27,12 +29,11 @@ export const useAuthStore = create(
         try {
           const result = await agent.Auth.signup(data)
           set(s => {
-            s.token = result.token
+            s.token = result.accessToken
           })
+          window.localStorage.setItem('token', result.accessToken)
           useHistory.push('/todo')
-        } catch (error: unknown) {
-          console.log('error-2121', (error as Error).message)
-        }
+        } catch (error: unknown) {}
       }
     })
   )

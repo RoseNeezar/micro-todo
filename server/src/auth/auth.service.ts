@@ -6,20 +6,17 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcryptjs';
+import { User } from 'src/entities/user.entity';
 import { UserRepository } from 'src/entities/user.repository';
 import { AuthCredentialDto } from './dto/auth-credentials.dto';
 import { JwtPayload } from './jwt-payload.interface';
-import * as bcrypt from 'bcryptjs';
-import { User } from 'src/entities/user.entity';
-import { Repository } from 'typeorm';
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
     private jwtService: JwtService,
-    @InjectRepository(User)
-    public readonly User: Repository<User>,
   ) {}
   async signUp(
     authCredentialDto: AuthCredentialDto,
@@ -32,7 +29,7 @@ export class AuthService {
       salt,
     };
     try {
-      await User.create(user).save();
+      await this.userRepository.create(user).save();
       const payload: JwtPayload = { username };
       const accessToken = await this.jwtService.sign(payload, {
         expiresIn: '1500min',
