@@ -23,7 +23,7 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: 'root-app',
       remotes: {
-        todo: `todo@http://https://keen-engelbart-06ebae.netlify.app/remoteEntry.js`
+        todo: `todo@https://optimistic-curie-93c51c.netlify.app/remoteEntry.js`
       },
       shared: {
         ...deps,

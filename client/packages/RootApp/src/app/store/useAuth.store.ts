@@ -14,9 +14,12 @@ export const useAuthStore = create(
     },
     (set, get) => ({
       isLoggedIn: () => !!get().token,
-      login: async (data: IAuth) => {
+      login: async (_: IAuth) => {
         try {
-          const result = await agent.Auth.login(data)
+          // const result = await agent.Auth.login(data)
+          const result = {
+            accessToken: 'test-token'
+          }
           set(s => {
             s.token = result.accessToken
           })
@@ -25,9 +28,12 @@ export const useAuthStore = create(
           useHistory.push('/todo')
         } catch (error) {}
       },
-      register: async (data: IAuth) => {
+      register: async (_: IAuth) => {
         try {
-          const result = await agent.Auth.signup(data)
+          // const result = await agent.Auth.signup(data)
+          const result = {
+            accessToken: 'test-token'
+          }
           set(s => {
             s.token = result.accessToken
           })
