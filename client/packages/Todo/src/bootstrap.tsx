@@ -21,12 +21,10 @@ const useMount = (el: ReactDOM.Container, authStore: any) => {
 // development and in isolation,
 // call mount immediately
 
-if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.querySelector('#_experience-root')
+const devRoot = document.querySelector('#_experience-root')
 
-  if (devRoot) {
-    useMount(devRoot, null)
-  }
+if (devRoot) {
+  useMount(devRoot, null)
 }
 
 // We are running through root app

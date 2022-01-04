@@ -4,8 +4,8 @@
     "es2021": true
   },
   "extends": [
-    "plugin:react/recommended",
     "airbnb",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:import/errors",
@@ -33,7 +33,7 @@
         "js": "never"
       }
     ],
-    "import/prefer-default-export": "off",
+    "import/prefer-default-export": 0,
     "react/function-component-definition": [
       2,
       {
@@ -41,8 +41,8 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "import/no-unresolved": [2, { "caseSensitive": false }],
-    "react/destructuring-assignment": [2, "never"],
+    "import/no-unresolved": 0,
+    "react/destructuring-assignment": 0,
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -51,8 +51,19 @@
         "peerDependencies": false
       }
     ],
-    "arrow-body-style": ["error", "always"],
-    "unused-imports/no-unused-imports": "never"
+    "arrow-body-style": 0,
+    "unused-imports/no-unused-imports": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "react/button-has-type": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "react/jsx-no-bind": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-no-useless-fragment": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "react/require-default-props": 0,
+    "import/no-cycle": 0,
+    "react/jsx-props-no-spreading": 0
   },
   "settings": {
     "import/resolver": {

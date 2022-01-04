@@ -8,31 +8,38 @@ import { combineAndImmer } from './types/combine-Immer'
 export const useAuthStore = create(
   combineAndImmer(
     {
-      token: undefined as string | undefined,
+      token: window.localStorage.getItem('token') ?? (null as string | null),
       appLoaded: false,
       isLoading: false
     },
     (set, get) => ({
       isLoggedIn: () => !!get().token,
-      login: async (data: IAuth) => {
+      login: async (_: IAuth) => {
         try {
-          const result = await agent.Auth.login(data)
+          // const result = await agent.Auth.login(data)
+          const result = {
+            accessToken: 'test-token'
+          }
           set(s => {
-            s.token = result.token
+            s.token = result.accessToken
           })
+          console.log(result.accessToken)
+          window.localStorage.setItem('token', result.accessToken)
           useHistory.push('/todo')
         } catch (error) {}
       },
-      register: async (data: IAuth) => {
+      register: async (_: IAuth) => {
         try {
-          const result = await agent.Auth.signup(data)
+          // const result = await agent.Auth.signup(data)
+          const result = {
+            accessToken: 'test-token'
+          }
           set(s => {
-            s.token = result.token
+            s.token = result.accessToken
           })
+          window.localStorage.setItem('token', result.accessToken)
           useHistory.push('/todo')
-        } catch (error: unknown) {
-          console.log('error-2121', (error as Error).message)
-        }
+        } catch (error: unknown) {}
       }
     })
   )

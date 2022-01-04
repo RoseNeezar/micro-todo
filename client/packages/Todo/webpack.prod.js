@@ -3,8 +3,11 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const commonConfig = require('./webpack.common')
 const deps = require('./package.json').dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const prodConfig = {
+  entry: './src/index.ts',
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js'
@@ -13,12 +16,14 @@ const prodConfig = {
     extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react'
+    }),
     new ModuleFederationPlugin({
-      name: 'experience',
+      name: 'todo',
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': './src/Button',
-        './Experience': './src/bootstrap'
+        './Todo': './src/bootstrap'
       },
       shared: {
         ...deps,
@@ -32,6 +37,15 @@ const prodConfig = {
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true
+        },
+        mode: 'write-references'
+      }
     })
   ]
 }

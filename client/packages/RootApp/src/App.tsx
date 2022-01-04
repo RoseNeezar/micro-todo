@@ -29,7 +29,14 @@ const App: React.FC = () => {
             </AuthRoute>
           }
         />
-        <Route path="/todo" element={<TodoApp />} />
+        <Route
+          path="/todo"
+          element={
+            <AuthRoute>
+              <TodoApp />
+            </AuthRoute>
+          }
+        />
         <Route path="/" element={<Navigate replace to="/home" />} />
       </Routes>
       {state?.backgroundLocation && (

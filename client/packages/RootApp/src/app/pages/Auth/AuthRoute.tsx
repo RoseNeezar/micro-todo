@@ -4,8 +4,8 @@ import { useAuthStore } from '../../store/useAuth.store'
 
 const AuthRoute: FC = ({ children }) => {
   const location = useLocation()
-  const { isLoggedIn, login } = useAuthStore()
-  if (!isLoggedIn()) {
+  const { token } = useAuthStore()
+  if (!token) {
     return <Navigate to="/landing" state={{ from: location }} replace />
   }
 
