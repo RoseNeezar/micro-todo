@@ -32,23 +32,22 @@ const devConfig = {
     new webpack.ProvidePlugin({
       React: 'react'
     }),
-    // new ModuleFederationPlugin({
-    //   name: "todo",
-    //   filename: "remoteEntry.js",
-    //   exposes: {
-    //     "./Button": "./src/Button.tsx",
-    //     "./Todo": "./src/bootstrap",
-    //   },
-    //   shared: {
-    //     ...deps,
-    //     react: { singleton: true, eager: true, requiredVersion: deps.react },
-    //     "react-dom": {
-    //       singleton: true,
-    //       eager: true,
-    //       requiredVersion: deps["react-dom"],
-    //     },
-    //   },
-    // }),
+    new ModuleFederationPlugin({
+      name: 'todo',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Todo': './src/bootstrap'
+      },
+      shared: {
+        ...deps,
+        react: { singleton: true, eager: true, requiredVersion: deps.react },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+          requiredVersion: deps['react-dom']
+        }
+      }
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),

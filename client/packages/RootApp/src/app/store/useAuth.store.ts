@@ -1,21 +1,39 @@
+import { toast } from 'react-toastify'
 import create from 'zustand'
+import { useHistory } from '../../bootstrap'
+import agent from '../api/agent'
+import { IAuth } from './types/auth.types'
 import { combineAndImmer } from './types/combine-Immer'
 
 export const useAuthStore = create(
   combineAndImmer(
     {
-      user: undefined as any | undefined,
+      token: undefined as string | undefined,
       appLoaded: false,
       isLoading: false
     },
     (set, get) => ({
-      isLoggedIn: () => !!get().user,
-      login: async () => {
-        set(s => {
-          s.user = 'sir'
-        })
+      isLoggedIn: () => !!get().token,
+      login: async (data: IAuth) => {
+        try {
+          const result = await agent.Auth.login(data)
+          set(s => {
+            s.token = result.token
+          })
+          useHistory.push('/todo')
+        } catch (error) {}
       },
-      register: async () => {}
+      register: async (data: IAuth) => {
+        try {
+          const result = await agent.Auth.signup(data)
+          set(s => {
+            s.token = result.token
+          })
+          useHistory.push('/todo')
+        } catch (error: unknown) {
+          console.log('error-2121', (error as Error).message)
+        }
+      }
     })
   )
 )
