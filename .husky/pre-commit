@@ -5,3 +5,4 @@
 
 # yarn lint
 # yarn lint-staged
+yarn test:staged
