@@ -22,7 +22,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "yarn  --cwd ./client  eslint",
+      "yarn  --cwd ./client  eslint  --fix --ext .tsx",
       "yarn  --cwd ./client  prettier --write"
     ]
   }
