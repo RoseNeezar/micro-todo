@@ -10,12 +10,25 @@
     "stop": "docker-compose -f docker-compose.dev.yml down && docker-compose -f docker-compose.dev.yml rm -f",
     "add:client": "yarn --cwd ./client add:all",
     "lint": "yarn --cwd ./client lint",
+    "test:staged": "git stash -k --include-untracked; yarn --cwd ./client lint; git stash apply;",
     "prepare": "husky install"
   },
   "devDependencies": {
     "concurrently": "^6.5.1",
     "husky": "^7.0.0",
+    "lint-staged": "^12.1.5",
+    "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
     "shelljs": "^0.8.4"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,js,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format && yarn test:staged"
+    }
   }
 }
